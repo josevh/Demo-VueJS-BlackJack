@@ -39,7 +39,7 @@
                   <li>Cards equaling more than  means you <strong>lose</strong>.</li>
                 </ul>
                 <h4>Card Values</h4>
-                <table class="table">
+                <table class="table table-compact">
                   <tr>
                     <td>Ace</td>
                     <td>1 or 11</td>
@@ -64,40 +64,15 @@
         </div><!-- .rules !rulesRead -->
         <div v-else class="row game">
           <div class="col-sm-12">
-
-            <div class="row game table">
-              <div class="col-sm-12">
-                <h2>Scores:</h2>
-                <table class="table">
-                  <thead>
-                    <th>Player</th>
-                    <th>Dealer</th>
-                    <th>Draw</th>
-                  </thead>
-                  <tbody>
-                    <td>{{ score.player }}</td>
-                    <td>{{ score.dealer }}</td>
-                    <td>{{ score.draw }}</td>
-                  </tbody>
-                </table>
-              </div>
-            </div><!-- .row.game.score -->
-
-            <hr>
-
             <div class="row">
-              <div class="col-sm-12">
-
-                <div v-if="roundOver" class="row endgame">
-                  <div class="col-sm-12 text-center">
+              <div class="col-sm-9 text-center round actions">
+                <div class="row">
+                  <div v-if="roundOver" class="col-sm-12 text-center endgame">
                     <h2>Game Over!</h2>
                     <h3>Winner: {{ lastWinner }}</h3>
                     <button class="btn btn-primary" v-on:click="newRound">Play Again</button>
-                  </div>
-                </div><!-- .row.endgame -->
-
-                <div v-else class="row round actions">
-                  <div class="col-sm-12 text-center">
+                  </div><!-- .col.endgame -->
+                  <div v-else class="col-sm-12 text-center">
                     <div v-if="cards.player.length === 0">
                       <button v-on:click="playerDrawCard()" class="btn btn-success">Get Cards</button>
                     </div>
@@ -106,25 +81,53 @@
                       <button v-on:click="endGame" class="btn btn-default">Stay</button>
                     </div>
                   </div>
-                </div><!-- .row.round.actions -->
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 text-center">
+                    <h3>Your Score: {{ cardSum(cards.player) }}</h3>
+                  </div><!-- .col.player.score -->
+                  <div class="col-sm-6 text-center">
+                    <h3 v-if="roundOver">Dealer Score: {{ cardSum(cards.dealer) }}</h3>
+                    <h3 v-else>Dealer Score: ??</h3>
+                  </div><!-- .col.dealer.score -->
+                </div>
 
-                <hr>
+              </div><!-- .row.round.actions -->
+              <div class="col-sm-3">
+                <h2>Scores</h2>
+                <table class="table">
+                    <tr>
+                      <th>Player</th>
+                      <td>{{ score.player }}</td>  
+                    </tr>
+                    <tr>
+                      <th>Dealer</th>
+                      <td>{{ score.dealer }}</td>  
+                    </tr>
+                    <tr>
+                      <th>Draw</th>
+                      <td>{{ score.draw }}</td>  
+                    </tr>
+                </table>
+              </div><!-- .col.game.score -->
 
-                <div class="row player score">
-                  <div class="col-sm-12">
-                    <h2>Your Score: {{ cardSum(cards.player) }}</h2>
-                  </div>
-                </div><!-- .row.player.score -->
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-12">
+
                 <div class="row">
                   <div class="col-sm-12">
                     <h3>Your Cards:</h3>
                     <div v-if="cards.player.length > 0" class="row">
-                      <div class="col-xs-2" v-for="card in cards.player">
+                      <div class="col-xs-3 col-sm-2" v-for="card in cards.player">
                         <img class="card" :src="card.image" :alt="card.value + ' of ' + card.suit">
                       </div>
                     </div>
                     <div v-else class="row">
-                      <div class="col-xs-2">
+                      <div class="col-xs-3 col-sm-2">
                         <img class="card secret" src="http://via.placeholder.com/226x314/ffffff/000000/&text=%3F" alt="Dealer secret card" style="opacity: 0;">
                       </div>
                     </div>
@@ -133,25 +136,19 @@
 
                 <hr>
 
-                <div class="row dealer score">
-                  <div class="col-sm-12">
-                    <h2 v-if="roundOver">Dealer Score: {{ cardSum(cards.dealer) }}</h2>
-                    <h2 v-else>Dealer Score: ??</h2>
-                  </div>
-                </div><!-- .row.dealer.score -->
                 <div class="row dealer cards">
                   <div class="col-sm-12">
                     <h3>Dealer Cards:</h3>
                     <div v-if="roundOver" class="row">
-                      <div class="col-xs-2" v-for="card in cards.dealer">
+                      <div class="col-xs-3 col-sm-2" v-for="card in cards.dealer">
                         <img class="card" :src="card.image" :alt="card.value + ' of ' + card.suit">
                       </div>
                     </div>
                     <div v-else class="row">
-                      <div v-if="cards.dealer.length > 0" class="col-xs-2">
+                      <div v-if="cards.dealer.length > 0" class="col-xs-3 col-sm-2">
                         <img class="card" :src="cards.dealer[0].image" :alt="cards.dealer[0].value + ' of ' + cards.dealer[0].suit">
                       </div>
-                      <div class="col-xs-2">
+                      <div class="col-xs-3 col-sm-2">
                         <img class="card secret" src="http://via.placeholder.com/226x314/ffffff/000000/&text=%3F" alt="Dealer secret card">
                       </div>
                     </div>
