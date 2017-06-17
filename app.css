@@ -1,0 +1,9 @@
+img.card {
+  width: 100%;
+  height: auto;
+}
+
+img.card.secret {
+  border-radius: 8px;
+  border: 1px solid #000;
+}
