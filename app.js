@@ -35,7 +35,6 @@ var app = new Vue({
       // TODO: .fail()
     },
     dealerDrawCard: function() {
-      // TODO: dealer logic
       var count = app.cards.dealer.length === 0 ? 2 : 1;
       $.get(cardsApi + '/' + this.deck.id + '/draw/?count=' + count)
       .done(function(data) {
@@ -47,9 +46,8 @@ var app = new Vue({
       // TODO: .fail()
     },
     dealerPlay: function() {
-      console.log('dealer total: ' + app.cardSum(app.cards.dealer));
-      // TODO: better AI
-      if (app.cardSum(app.cards.dealer) < 18) {
+      // TODO: better dealer logic
+      if (app.cardSum(app.cards.dealer) < 17) {
         app.dealerDrawCard();
       }
     },
@@ -80,7 +78,7 @@ var app = new Vue({
         return acc + app.cardValue(card);
       }, 0);
 
-      var tmpAceCount = app.aceCount(app.cards.player);
+      var tmpAceCount = app.aceCount(cards);
 
       while (tmpAceCount > 0) {
         if (tmpSum > 21 && app.aceCount !== 0) {
