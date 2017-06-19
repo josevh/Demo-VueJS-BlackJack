@@ -123,12 +123,12 @@
                     <h3>Your Cards:</h3>
                     <div v-if="cards.player.length > 0" class="row">
                       <div class="col-xs-3 col-sm-2" v-for="card in cards.player">
-                        <img class="card" :src="card.image" :alt="card.value + ' of ' + card.suit">
+                        <img class="card img-responsive" :src="card.image" :alt="card.value + ' of ' + card.suit">
                       </div>
                     </div>
                     <div v-else class="row">
                       <div class="col-xs-3 col-sm-2">
-                        <img class="card secret invisible" src="http://via.placeholder.com/226x314/ffffff/000000/?text=%3F" alt="Dealer secret card" >
+                        <img class="card secret invisible img-responsive" src="http://via.placeholder.com/226x314/ffffff/000000/?text=%3F" alt="Dealer secret card" >
                       </div>
                     </div>
                   </div>
@@ -141,15 +141,15 @@
                     <h3>Dealer Cards:</h3>
                     <div v-if="roundOver" class="row">
                       <div class="col-xs-3 col-sm-2" v-for="card in cards.dealer">
-                        <img class="card" :src="card.image" :alt="card.value + ' of ' + card.suit">
+                        <img class="card img-responsive" :src="card.image" :alt="card.value + ' of ' + card.suit">
                       </div>
                     </div>
                     <div v-else class="row">
                       <div v-if="cards.dealer.length > 0" class="col-xs-3 col-sm-2">
-                        <img class="card" :src="cards.dealer[0].image" :alt="cards.dealer[0].value + ' of ' + cards.dealer[0].suit">
+                        <img class="card img-responsive" :src="cards.dealer[0].image" :alt="cards.dealer[0].value + ' of ' + cards.dealer[0].suit">
                       </div>
                       <div class="col-xs-3 col-sm-2">
-                        <img class="card secret" src="http://via.placeholder.com/226x314/ffffff/000000/?text=%3F" alt="Dealer secret card">
+                        <img class="card secret img-responsive" src="http://via.placeholder.com/226x314/ffffff/000000/?text=%3F" alt="Dealer secret card">
                       </div>
                     </div>
                   </div>
