@@ -25,7 +25,7 @@
     <div v-else class="row game-container">
       <div class="col-sm-12">
         <div v-if="!rulesRead" class="row rules">
-          <div class="col-sm-10 col-sm-offset-1">
+          <div class="col-sm-6 col-sm-offset-3">
             <div class="row">
               <div class="col-sm-12">
                 <h3>Rules</h3>
@@ -65,6 +65,7 @@
         <div v-else class="row game">
           <div class="col-sm-12">
             <div class="row">
+
               <div class="col-sm-9 text-center round actions">
                 <div class="row">
                   <div v-if="roundOver" class="col-sm-12 text-center endgame">
@@ -91,27 +92,19 @@
                     <h3 v-else>Dealer Score: ??</h3>
                   </div><!-- .col.dealer.score -->
                 </div>
+              </div><!-- .col.round.actions -->
 
-              </div><!-- .row.round.actions -->
               <div class="col-sm-3">
-                <h2>Scores</h2>
-                <table class="table">
-                    <tr>
-                      <th>Player</th>
-                      <td>{{ score.player }}</td>  
-                    </tr>
-                    <tr>
-                      <th>Dealer</th>
-                      <td>{{ score.dealer }}</td>  
-                    </tr>
-                    <tr>
-                      <th>Draw</th>
-                      <td>{{ score.draw }}</td>  
+                <h2 class="text-center">Leaderboard</h2>
+                <table class="table table-condensed">
+                    <tr v-for="(score, i) in sortedScores">
+                      <th>{{ score[0] | capitalize }}</th>
+                      <td>{{ score[1] }}</td>  
                     </tr>
                 </table>
               </div><!-- .col.game.score -->
 
-            </div>
+            </div><!-- .row -->
 
             <hr>
 

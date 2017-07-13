@@ -114,7 +114,7 @@ var app = new Vue({
       app.setWinner(winner);
     },
     setWinner: function(winner) {
-      app.score[winner.toLowerCase()]++;
+      app.scores[winner.toLowerCase()]++;
       app.lastWinner = winner;
     },
     calculateBust: function(cards) {
@@ -133,9 +133,29 @@ var app = new Vue({
       app.getDeck();
     }
   },
+  computed: {
+    sortedScores: function() {
+      var tempScores = [];
+
+      for (var s in app.scores) {
+        tempScores.push([s, app.scores[s]]);
+      }
+
+      tempScores.sort(function(a, b) {
+        return a[1] - b[1];
+      }).reverse();
+
+      return tempScores;
+    }
+  },
+  filters: {
+    capitalize: function(text) {
+      return text[0].toUpperCase() + text.slice(1);
+    }
+  },
   data: {
     roundNum: 0,
-    score: {
+    scores: {
       dealer: 0,
       player: 0,
       draw: 0
