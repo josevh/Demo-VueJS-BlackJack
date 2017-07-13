@@ -97,7 +97,7 @@
               <div class="col-sm-3">
                 <h2 class="text-center">Leaderboard</h2>
                 <table class="table table-condensed">
-                    <tr v-for="(score, i) in sortedScores">
+                    <tr v-for="score in sortedScores">
                       <th>{{ score[0] | capitalize }}</th>
                       <td>{{ score[1] }}</td>  
                     </tr>
