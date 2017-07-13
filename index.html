@@ -64,15 +64,12 @@
 
             <div class="row">
               <div class="col-sm-9">
-                <h2>Game</h2>
-                <table class="table table-condensed">
+                <h3>Game</h3>
+                <table class="table">
                   <tr>
-                    <td>Your Score: {{ cardSum(cards.player) }}</td>
-                    <td>
-                      <span v-if="roundOver">Dealer Score: {{ cardSum(cards.dealer) }}</span>
-                      <span v-else>Dealer Score: ??</span>
-                    </td>
-                    <td>
+                    <td><strong>Your Score</strong>: {{ cardSum(cards.player) }}</td>
+                    <td><strong>Dealer Score</strong>: <span v-if="roundOver">{{ cardSum(cards.dealer) }}</span><span v-else>??</span></td>
+                    <td class="text-center">
                       <span v-if="roundOver">
                         <button class="btn btn-primary" v-on:click="newRound">Play Again</button>
                       </span>
@@ -88,19 +85,19 @@
                     </td>
                   </tr>
                   <tr>
-                    <td v-if="roundOver" colspan="3" class="text-center">
-                      <h2>Game Over!</h2>
-                      <h3>Winner: {{ lastWinner }}</h3>
+                    <td colspan="3" class="text-center" style="border-top: none;">
+                      <div v-if="roundOver">
+                        <h2>Game Over!</h2>
+                        <h3>Winner: {{ lastWinner }}</h3>
+                      </div>
                     </td>
-                    <td v-else colspan="3">&nbsp;</td>
                   </tr>
                 </table>
-
-              </div>
+              </div><!-- .col.game -->
 
               <div class="col-sm-3">
-                <h2 class="text-center">Leaderboard</h2>
-                <table class="table table-condensed">
+                <h3>Leaderboard</h3>
+                <table class="table">
                   <tbody>
                     <tr v-for="score in sortedScores">
                       <th>{{ score[0] | capitalize }}</th>
