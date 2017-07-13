@@ -61,43 +61,52 @@
         </div><!-- .rules !rulesRead -->
         <div v-else class="row game">
           <div class="col-sm-12">
-            <div class="row">
 
-              <div class="col-sm-9 text-center round actions">
-                <div class="row">
-                  <div v-if="roundOver" class="col-sm-12 text-center endgame">
-                    <h2>Game Over!</h2>
-                    <h3>Winner: {{ lastWinner }}</h3>
-                    <button class="btn btn-primary" v-on:click="newRound">Play Again</button>
-                  </div><!-- .col.endgame -->
-                  <div v-else class="col-sm-12 text-center">
-                    <div v-if="cards.player.length === 0">
-                      <button v-on:click="playerDrawCard()" class="btn btn-success">Get Cards</button>
-                    </div>
-                    <div v-else>
-                      <button v-on:click="playerDrawCard()" class="btn btn-success">Hit</button>
-                      <button v-on:click="endGame" class="btn btn-default">Stay</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6 text-center">
-                    <h3>Your Score: {{ cardSum(cards.player) }}</h3>
-                  </div><!-- .col.player.score -->
-                  <div class="col-sm-6 text-center">
-                    <h3 v-if="roundOver">Dealer Score: {{ cardSum(cards.dealer) }}</h3>
-                    <h3 v-else>Dealer Score: ??</h3>
-                  </div><!-- .col.dealer.score -->
-                </div>
-              </div><!-- .col.round.actions -->
+            <div class="row">
+              <div class="col-sm-9">
+                <h2>Game</h2>
+                <table class="table table-condensed">
+                  <tr>
+                    <td>Your Score: {{ cardSum(cards.player) }}</td>
+                    <td>
+                      <span v-if="roundOver">Dealer Score: {{ cardSum(cards.dealer) }}</span>
+                      <span v-else>Dealer Score: ??</span>
+                    </td>
+                    <td>
+                      <span v-if="roundOver">
+                        <button class="btn btn-primary" v-on:click="newRound">Play Again</button>
+                      </span>
+                      <span v-else>
+                        <div v-if="cards.player.length === 0">
+                          <button v-on:click="playerDrawCard()" class="btn btn-success">Get Cards</button>
+                        </div>
+                        <div v-else>
+                          <button v-on:click="playerDrawCard()" class="btn btn-success">Hit</button>
+                          <button v-on:click="endGame" class="btn btn-default">Stay</button>
+                        </div>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td v-if="roundOver" colspan="3" class="text-center">
+                      <h2>Game Over!</h2>
+                      <h3>Winner: {{ lastWinner }}</h3>
+                    </td>
+                    <td v-else colspan="3">&nbsp;</td>
+                  </tr>
+                </table>
+
+              </div>
 
               <div class="col-sm-3">
                 <h2 class="text-center">Leaderboard</h2>
                 <table class="table table-condensed">
-                  <tr v-for="score in sortedScores">
-                    <th>{{ score[0] | capitalize }}</th>
-                    <td>{{ score[1] }}</td>  
-                  </tr>
+                  <tbody>
+                    <tr v-for="score in sortedScores">
+                      <th>{{ score[0] | capitalize }}</th>
+                      <td>{{ score[1] }}</td>  
+                    </tr>
+                  </tbody>
                 </table>
               </div><!-- .col.game.score -->
 
