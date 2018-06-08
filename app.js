@@ -2,6 +2,26 @@ var cardsApi = 'https://deckofcardsapi.com/api/deck';
 
 var app = new Vue({
   el: '#app',
+  data: {
+    roundNum: 0,
+    scores: {
+      dealer: 0,
+      player: 0,
+      draw: 0
+    },
+    roundStarted: false,
+    roundOver: false,
+    rulesRead: false,
+    lastWinner: null,
+    deck: {
+      id: null,
+      remaining: null
+    },
+    cards: {
+      player: [],
+      dealer: []
+    }
+  },
   methods: {
     start: function () {
       app.roundStarted = true;
@@ -46,7 +66,6 @@ var app = new Vue({
       // TODO: .fail()
     },
     dealerPlay: function() {
-      // TODO: better dealer logic
       if (app.cardSum(app.cards.dealer) < 17) {
         app.dealerDrawCard();
       }
@@ -151,26 +170,6 @@ var app = new Vue({
   filters: {
     capitalize: function(text) {
       return text[0].toUpperCase() + text.slice(1);
-    }
-  },
-  data: {
-    roundNum: 0,
-    scores: {
-      dealer: 0,
-      player: 0,
-      draw: 0
-    },
-    roundStarted: false,
-    roundOver: false,
-    rulesRead: false,
-    lastWinner: null,
-    deck: {
-      id: null,
-      remaining: null
-    },
-    cards: {
-      player: [],
-      dealer: []
     }
   }
 });
