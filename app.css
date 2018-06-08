@@ -1,9 +1,19 @@
-html, body
- {
-  background-color: #45694e;
+html,
+body {
+ background-color: #45694e;
 }
 
 img.card.secret {
-  border-radius: 8px;
-  border: 1px solid #000;
+ border-radius: 8px;
+ border: 1px solid #000;
+}
+
+[v-cloak]>* {
+ display: none
+}
+
+[v-cloak]::before {
+ content: "Loading…";
+ display: block;
+ text-align: center;
 }
