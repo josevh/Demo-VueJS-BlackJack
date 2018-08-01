@@ -75,10 +75,10 @@
                       </span>
                       <span v-else>
                         <div v-if="cards.player.length === 0">
-                          <button @click="playerDrawCard()" class="btn btn-success">Get Cards</button>
+                          <button @click="playerDrawCard" class="btn btn-success">Deal</button>
                         </div>
                         <div v-else>
-                          <button @click="playerDrawCard()" class="btn btn-success">Hit</button>
+                          <button @click="playerDrawCard" class="btn btn-success">Hit</button>
                           <button @click="endGame" class="btn btn-default">Stay</button>
                         </div>
                       </span>
