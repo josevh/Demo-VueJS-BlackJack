@@ -19,7 +19,7 @@
     </div>
     <div v-if="!roundStarted" class="row start-game">
       <div class="col-sm-12 text-center">
-        <button v-on:click="start" class="btn btn-primary">Start Game</button>
+        <button @click="start" class="btn btn-primary">Start Game</button>
       </div>
     </div><!-- .start-game !roundStarted -->
 
@@ -54,7 +54,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12 text-center">
-                <button v-on:click="readRules" class="btn btn-primary">Got it</button>
+                <button @click="readRules" class="btn btn-primary">Got it</button>
               </div>
             </div>
           </div>
@@ -71,15 +71,15 @@
                     <td><strong>Dealer Score</strong>: <span v-if="roundOver">{{ cardSum(cards.dealer) }}</span><span v-else>??</span></td>
                     <td class="text-center">
                       <span v-if="roundOver">
-                        <button class="btn btn-primary" v-on:click="newRound">Play Again</button>
+                        <button class="btn btn-primary" @click="newRound">Play Again</button>
                       </span>
                       <span v-else>
                         <div v-if="cards.player.length === 0">
-                          <button v-on:click="playerDrawCard()" class="btn btn-success">Get Cards</button>
+                          <button @click="playerDrawCard()" class="btn btn-success">Get Cards</button>
                         </div>
                         <div v-else>
-                          <button v-on:click="playerDrawCard()" class="btn btn-success">Hit</button>
-                          <button v-on:click="endGame" class="btn btn-default">Stay</button>
+                          <button @click="playerDrawCard()" class="btn btn-success">Hit</button>
+                          <button @click="endGame" class="btn btn-default">Stay</button>
                         </div>
                       </span>
                     </td>
@@ -101,7 +101,7 @@
                   <tbody>
                     <tr v-for="score in sortedScores">
                       <th>{{ score[0] | capitalize }}</th>
-                      <td>{{ score[1] }}</td>  
+                      <td>{{ score[1] }}</td>
                     </tr>
                   </tbody>
                 </table>
